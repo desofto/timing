@@ -50,11 +50,9 @@
     @state.title && @state.started_at && @state.duration
 
   dataForPost: ->
-    {
-      title: @state.title,
-      started_at: @state.started_at,
-      duration: @state.duration * 60
-    }
+    title: @state.title,
+    started_at: @state.started_at,
+    duration: @state.duration * 60
 
   handleSubmit: (e) ->
     e.preventDefault()
