@@ -41,7 +41,7 @@
   recordRow: ->
     React.DOM.tr null,
       React.DOM.td null, @props.record.title
-      React.DOM.td null, @props.record.started_at
+      React.DOM.td null, (new Date(@props.record.started_at)).toLocaleDateString()
       React.DOM.td null, durationFormat(@props.record.duration)
       React.DOM.td null,
         React.DOM.a
@@ -64,7 +64,7 @@
       React.DOM.td null,
         React.DOM.input
           className: 'form-control'
-          type: 'text'
+          type: 'date'
           defaultValue: @props.record.started_at
           ref: 'started_at'
       React.DOM.td null,
