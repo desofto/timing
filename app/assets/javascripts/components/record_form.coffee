@@ -1,8 +1,10 @@
 @RecordForm = React.createClass
+
   getInitialState: ->
     title: ''
     started_at: ''
     duration: ''
+
   render: ->
     React.DOM.form
       className: 'form-inline'
@@ -39,15 +41,24 @@
         className: 'btn btn-primary'
         disabled: !@valid()
         'Create record'
+
   handleChange: (e) ->
     name = e.target.name
     @setState "#{ name }": e.target.value
+
   valid: ->
     @state.title && @state.started_at && @state.duration
+
+  dataForPost: ->
+    {
+      title: @state.title,
+      started_at: @state.started_at,
+      duration: @state.duration * 60
+    }
+
   handleSubmit: (e) ->
     e.preventDefault()
-    $.post '', { record: @state }, (data) =>
+    $.post '', { record: @dataForPost() }, (data) =>
       @props.handleNewRecord data
       @setState @getInitialState()
     , 'JSON'
-
